@@ -3,287 +3,133 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BrightLearn - Learn Today, Lead Tomorrow</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BrightLearn | Student Portal</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:"Segoe UI",Arial,sans-serif;color:#15183f;background:#fff}
-button{cursor:pointer;font:inherit}
-.navbar{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:18px 5%;flex-wrap:wrap;background:white;position:sticky;top:0;z-index:5;box-shadow:0 2px 12px #0000000b}
-.logo{font-size:25px;font-weight:900;color:#3730e8}
-.logo span{color:#ff623e}
-.tagline{font-size:12px}
-nav{display:flex;gap:7px;flex-wrap:wrap}
-nav button{border:0;background:white;padding:10px;border-radius:20px;color:#202044;font-weight:650}
-nav button:hover,nav button.active{background:#eeedff;color:#3730e8}
-.btn{padding:13px 19px;border-radius:12px;border:0;font-weight:bold}
-.primary{background:#3730e8;color:white}
-.outline{background:white;color:#3730e8;border:1px solid #d7d5ff}
-.hero{padding:55px 6%;display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:center;background:linear-gradient(115deg,#f0efff,#fff 58%,#e5e1ff)}
-h1{font-size:clamp(38px,5vw,65px);line-height:1.1;margin:0 0 20px;letter-spacing:-1px}
-.blue{color:#3730e8}
-.hero p{font-size:18px;line-height:1.7;color:#454968}
-.actions{display:flex;gap:12px;flex-wrap:wrap;margin:25px 0}
-.art{position:relative;min-height:300px;display:flex;align-items:center;justify-content:center}
-.circle{height:290px;width:290px;max-width:90%;border-radius:50%;background:linear-gradient(135deg,#dedaff,#bdb4ff);display:flex;align-items:center;justify-content:center;font-size:150px}
-.float{position:absolute;background:white;border-radius:14px;padding:13px;box-shadow:0 8px 25px #00000012;font-weight:bold}
-.f1{top:12%;left:0}.f2{bottom:10%;right:0}
-.stats{display:flex;gap:25px;flex-wrap:wrap;margin-top:25px}
-.stats strong{display:block;font-size:18px}
-.stats small{color:#686b85}
-.container{max-width:1200px;margin:auto;padding:45px 5%}
-.section-title{text-align:center;font-size:30px}
-.subtitle{text-align:center;color:#6a6c82;margin-bottom:30px}
-.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.card{padding:22px;border-radius:18px;transition:.2s}
-.card:hover{transform:translateY(-4px)}
-.card:nth-child(1){background:#e7f3ff}
-.card:nth-child(2){background:#eaf8ed}
-.card:nth-child(3){background:#fff3e6}
-.card:nth-child(4){background:#fff0f3}
-.emoji{font-size:36px}
-.card h3{margin:12px 0}
-.card p{line-height:1.6;color:#4e536b}
-.link{border:0;background:transparent;color:#3730e8;font-weight:bold;padding:7px 0}
-.banner{margin-top:28px;padding:28px;border-radius:18px;background:linear-gradient(110deg,#3730cf,#5540e4);color:white;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
-.banner h2{margin:0 0 8px}
-.banner p{line-height:1.6}
-.page{display:none;min-height:65vh}
-.page.active{display:block}
-.panel{max-width:850px;margin:30px auto;padding:25px;border-radius:18px;background:#f6f7ff}
-.item{padding:18px;margin:12px 0;background:white;border-radius:12px}
-.item label{display:block;margin:12px 0}
-footer{text-align:center;padding:25px;background:#f6f7ff;color:#666}
-@media(max-width:900px){.hero{grid-template-columns:1fr}.cards{grid-template-columns:repeat(2,1fr)}.navbar{justify-content:center}nav{justify-content:center}}
-@media(max-width:520px){.cards{grid-template-columns:1fr}.hero{padding:35px 6%}.circle{height:230px;width:230px;font-size:120px}.stats{gap:15px}}
+body{margin:0;font-family:Arial,sans-serif;background:#f2f5ff;color:#202b46}
+header{background:#243b80;color:white;padding:22px;text-align:center}
+header h1{margin:0}
+header p{margin:8px 0 0}
+main{max-width:650px;margin:28px auto;padding:16px}
+.card{background:white;border-radius:16px;padding:24px;box-shadow:0 5px 24px #17255415}
+h2{margin-top:0}
+label{display:block;margin-top:15px;font-weight:bold}
+input,select{width:100%;padding:12px;margin-top:7px;border:1px solid #ccd3e3;border-radius:8px;font-size:16px}
+button{border:0;background:#3157cf;color:white;padding:13px 18px;border-radius:9px;font-size:16px;cursor:pointer;margin-top:20px}
+button:hover{background:#203fa5}
+.question{padding:15px 0;border-bottom:1px solid #e5e7eb}
+.option{display:block;font-weight:normal;margin:10px 0}
+.option input{width:auto;margin-right:8px}
+.small{color:#64748b;font-size:14px}
+#exam,#result{display:none}
+footer{text-align:center;padding:20px;color:#64748b}
 </style>
 </head>
-
 <body>
-<header class="navbar">
-  <div>
-    <div class="logo">♟ Bright<span>Learn</span></div>
-    <div class="tagline">Learn · Practice · Achieve</div>
-  </div>
-  <nav>
-    <button class="active" data-page="home" onclick="showPage('home')">⌂ Home</button>
-    <button data-page="courses" onclick="showPage('courses')">📚 Courses</button>
-    <button data-page="tests" onclick="showPage('tests')">☑ Tests</button>
-    <button data-page="puzzles" onclick="showPage('puzzles')">🧩 Puzzles</button>
-    <button data-page="leaders" onclick="showPage('leaders')">🏆 Leaderboard</button>
-  </nav>
-  <button class="btn primary" onclick="showPage('login')">Join Us</button>
+<header>
+  <h1>🎓 BrightLearn</h1>
+  <p>Learn • Practice • Achieve</p>
 </header>
 
-<section id="home" class="page active">
-  <div class="hero">
-    <div>
-      <h1>Learn Today,<br>Lead <span class="blue">Tomorrow</span></h1>
-      <p>An exciting learning world for students! Explore courses, take quizzes, solve puzzles and discover your talents.</p>
-      <div class="actions">
-        <button class="btn primary" onclick="showPage('courses')">🚀 Start Learning — It's Free!</button>
-        <button class="btn outline" onclick="showPage('tests')">▷ Try a Quiz</button>
-      </div>
-      <div class="stats">
-        <div>👥 <strong>Explore</strong><small>New ideas</small></div>
-        <div>📚 <strong>Learn</strong><small>Every day</small></div>
-        <div>🏆 <strong>Achieve</strong><small>Your goals</small></div>
-      </div>
-    </div>
-    <div class="art">
-      <div class="circle">🧑‍🎓</div>
-      <div class="float f1">💡 Be Curious!</div>
-      <div class="float f2">⭐ You Can Do It!</div>
-    </div>
-  </div>
+<main>
+<section class="card" id="login">
+  <h2>Student Login</h2>
+  <p class="small">Enter your details to start the practice test.</p>
+  <form id="loginForm">
+    <label for="student">Student name</label>
+    <input id="student" required maxlength="80" placeholder="Enter your name">
 
-  <div class="container">
-    <h2 class="section-title">Everything You Need to <span class="blue">Grow</span></h2>
-    <p class="subtitle">Choose your adventure. Discover something new.</p>
-    <div class="cards">
-      <article class="card"><div class="emoji">📘</div><h3>Explore Courses</h3><p>School subjects, robotics, science and English.</p><button class="link" onclick="showPage('courses')">Explore Now →</button></article>
-      <article class="card"><div class="emoji">📝</div><h3>Test Yourself</h3><p>Answer questions and discover what you know.</p><button class="link" onclick="showPage('tests')">Start Test →</button></article>
-      <article class="card"><div class="emoji">🧩</div><h3>Solve Puzzles</h3><p>Challenge your brain with fun activities.</p><button class="link" onclick="showPage('puzzles')">Play Now →</button></article>
-      <article class="card"><div class="emoji">🏆</div><h3>Top Performers</h3><p>Celebrate student achievements and progress.</p><button class="link" onclick="showPage('leaders')">View Leaders →</button></article>
-    </div>
-    <div class="banner"><div><h2>Learn · Practice · Achieve</h2><p>Your next learning adventure starts here!</p></div><div style="font-size:60px">🏆🌟</div></div>
-  </div>
-</section>
+    <label for="className">Class</label>
+    <select id="className" required>
+      <option value="">Choose your class</option>
+      <option>6</option><option>7</option><option>8</option>
+      <option>9</option><option>10</option>
+    </select>
 
-<section id="courses" class="page container">
-  <h1 class="section-title">📚 Explore Courses</h1>
-  <p class="subtitle">Pick a subject and start exploring.</p>
-  <div class="cards">
-    <article class="card"><div class="emoji">🤖</div><h3>Robotics</h3><p>Robots, sensors and electronics.</p></article>
-    <article class="card"><div class="emoji">🔬</div><h3>Science</h3><p>Discover physics and biology.</p></article>
-    <article class="card"><div class="emoji">➗</div><h3>Mathematics</h3><p>Numbers, logic and problem-solving.</p></article>
-    <article class="card"><div class="emoji">📝</div><h3>English</h3><p>Grammar and vocabulary practice.</p></article>
-  </div>
-</section>
+    <label for="examCode">Exam code</label>
+    <input id="examCode" required placeholder="Enter exam code">
 
-<section id="tests" class="page container">
-  <div class="panel">
-    <h1>📝 Try a Sample Test</h1>
-    <p>Which component detects light?</p>
-    <form id="quiz">
-      <div class="item">
-        <label><input type="radio" name="answer" value="a"> Motor</label>
-        <label><input type="radio" name="answer" value="b"> LDR sensor</label>
-        <label><input type="radio" name="answer" value="c"> Buzzer</label>
-      </div>
-      <button type="button" class="btn primary" onclick="checkQuiz()">Submit Answer</button>
-    </form>
-    <h3 id="result"></h3>
-  </div>
-</section>
-
-<section id="puzzles" class="page container">
-  <div class="panel">
-    <h1>🧩 Brain Teasers</h1>
-    <div class="item"><h3>Riddle</h3><p>What has hands but cannot clap?</p><button class="btn primary" onclick="reveal('answer1')">Reveal Answer</button><p id="answer1" hidden>A clock! 🕒</p></div>
-    <div class="item"><h3>Number Challenge</h3><p>2, 4, 6, 8, __</p><button class="btn primary" onclick="reveal('answer2')">Reveal Answer</button><p id="answer2" hidden>10 🎉</p></div>
-  </div>
-</section>
-
-<section id="leaders" class="page container">
-  <div class="panel">
-    <h1>🏆 Student Leaderboard</h1>
-    <p>Student rankings will appear here after secure accounts and exam score storage are added.</p>
-    <p>Student names and marks should only be displayed with appropriate permission.</p>
-  </div>
-</section>
-
-<section id="login" class="page container">
-  <div class="panel">
-    <h1>👋 Welcome to BrightLearn</h1>
-    <p>Student login and registration will be added in a future step.</p>
-    <button class="btn primary" onclick="showPage('courses')">Explore Courses</button>
-  </div>
-</section>
-
-<footer>
-  <strong>BrightLearn</strong><p>Keep curious. Keep learning. Keep growing.</p>
-</footer>
-
-<script>
-function showPage(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));
-  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-function checkQuiz(){
-  const answer=document.querySelector('input[name="answer"]:checked');
-  const result=document.getElementById('result');
-  if(!answer){result.textContent='Please select an answer first.';return;}
-  result.textContent=answer.value==='b'?'🎉 Correct! Well done!':'Keep learning! The correct answer is LDR sensor.';
-}
-function reveal(id){
-  document.getElementById(id).hidden=false;
-}
-</script>
-<!-- BrightLearn Student Test -->
-
-<section id="brightlearn-test" style="max-width:700px;margin:30px auto;padding:24px;font-family:Arial,sans-serif;background:#f0f7ff;border-radius:16px;color:#183153;">
-  <h2>📝 BrightLearn Student Test</h2>
-  <p>Answer these 3 questions and check your score!</p>
-
-  <form id="testForm">
-    <p><strong>1. Which planet do we live on?</strong></p>
-    <label><input type="radio" name="q1" value="0" required> Mars</label><br>
-    <label><input type="radio" name="q1" value="1"> Earth</label><br>
-    <label><input type="radio" name="q1" value="0"> Jupiter</label>
-
-```
-<p><strong>2. What is 5 + 3?</strong></p>
-<label><input type="radio" name="q2" value="1" required> 8</label><br>
-<label><input type="radio" name="q2" value="0"> 7</label><br>
-<label><input type="radio" name="q2" value="0"> 9</label>
-
-<p><strong>3. Which part of a plant absorbs water?</strong></p>
-<label><input type="radio" name="q3" value="1" required> Roots</label><br>
-<label><input type="radio" name="q3" value="0"> Flowers</label><br>
-<label><input type="radio" name="q3" value="0"> Fruits</label><br><br>
-
-<button type="submit" style="background:#1769ff;color:white;border:0;padding:12px 24px;border-radius:8px;cursor:pointer;font-size:16px;">Submit Test</button>
-```
-
+    <button type="submit">Start Test</button>
   </form>
-
-  <div id="testResult" role="status" style="margin-top:20px;font-size:20px;font-weight:bold;"></div>
+  <p class="small">Demo exam code: BL101</p>
 </section>
 
-<script>
-document.getElementById("testForm").addEventListener("submit", function(event) {
-  event.preventDefault();
-  const answers = ["q1", "q2", "q3"];
-  let score = 0;
+<section class="card" id="exam">
+  <h2 id="welcome"></h2>
+  <p class="small">Practice Test • 5 questions</p>
+  <form id="examForm">
+    <div id="questions"></div>
+    <button type="submit">Submit Test</button>
+  </form>
+</section>
 
-  answers.forEach(function(question) {
-    const selected = document.querySelector('input[name="' + question + '"]:checked');
-    if (selected) score += Number(selected.value);
+<section class="card" id="result">
+  <h2>Test Completed!</h2>
+  <p id="studentResult"></p>
+  <h3 id="score"></h3>
+  <p id="feedback"></p>
+  <button onclick="location.reload()">Back to Home</button>
+</section>
+</main>
+<footer>© BrightLearn • Learning for everyone</footer>
+
+<script>
+const examCode = "BL101";
+
+const quiz = [
+ {q:"Which planet do we live on?",a:["Mars","Earth","Venus","Jupiter"],correct:1},
+ {q:"What is 8 × 7?",a:["54","48","56","64"],correct:2},
+ {q:"Which is a noun?",a:["Quickly","Beautiful","School","Run"],correct:2},
+ {q:"Which organ pumps blood?",a:["Lungs","Heart","Brain","Kidney"],correct:1},
+ {q:"What is the chemical formula for water?",a:["CO2","O2","H2O","NaCl"],correct:2}
+];
+
+let studentName = "";
+let studentClass = "";
+
+document.getElementById("loginForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  if(document.getElementById("examCode").value.trim().toUpperCase() !== examCode){
+    alert("Incorrect exam code. Please check with your teacher.");
+    return;
+  }
+
+  studentName = document.getElementById("student").value.trim();
+  studentClass = document.getElementById("className").value;
+
+  document.getElementById("login").style.display = "none";
+  document.getElementById("exam").style.display = "block";
+  document.getElementById("welcome").textContent = "Good luck, " + studentName + "!";
+
+  document.getElementById("questions").innerHTML = quiz.map((item,i)=>`
+    <div class="question">
+      <strong>${i+1}. ${item.q}</strong>
+      ${item.a.map((option,j)=>`
+        <label class="option">
+          <input type="radio" name="q${i}" value="${j}" required>
+          ${option}
+        </label>`).join("")}
+    </div>`).join("");
+});
+
+document.getElementById("examForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  let score = 0;
+  quiz.forEach((item,i)=>{
+    const answer = document.querySelector('input[name="q'+i+'"]:checked');
+    if(answer && Number(answer.value) === item.correct) score++;
   });
 
-  document.getElementById("testResult").textContent =
-    "Your score: " + score + " / 3";
+  document.getElementById("exam").style.display = "none";
+  document.getElementById("result").style.display = "block";
+  document.getElementById("studentResult").textContent =
+    studentName + " • Class " + studentClass;
+  document.getElementById("score").textContent =
+    "Your score: " + score + " / " + quiz.length;
+  document.getElementById("feedback").textContent =
+    score >= 4 ? "Excellent work! Keep learning." : "Good effort! Keep practising.";
 });
 </script>
-
-<!-- BrightLearn Sample Student Test -->
-<section id="sample-test" style="max-width:750px;margin:40px auto;padding:24px;background:#f5f3ff;border-radius:16px;font-family:Arial,sans-serif;color:#171747;">
-  <h2>📝 BrightLearn Student Test</h2>
-  <p>General Knowledge | 5 Questions</p>
-
-  <form id="student-test">
-    <p><b>1. Which planet is known as the Red Planet?</b></p>
-    <label><input type="radio" name="q1" value="a"> Earth</label><br>
-    <label><input type="radio" name="q1" value="b"> Mars</label><br>
-    <label><input type="radio" name="q1" value="c"> Jupiter</label><br>
-
-    <p><b>2. What is 12 × 5?</b></p>
-    <label><input type="radio" name="q2" value="a"> 50</label><br>
-    <label><input type="radio" name="q2" value="b"> 60</label><br>
-    <label><input type="radio" name="q2" value="c"> 65</label><br>
-
-    <p><b>3. Which organ pumps blood?</b></p>
-    <label><input type="radio" name="q3" value="a"> Lungs</label><br>
-    <label><input type="radio" name="q3" value="b"> Brain</label><br>
-    <label><input type="radio" name="q3" value="c"> Heart</label><br>
-
-    <p><b>4. Choose the correct spelling.</b></p>
-    <label><input type="radio" name="q4" value="a"> Scool</label><br>
-    <label><input type="radio" name="q4" value="b"> School</label><br>
-    <label><input type="radio" name="q4" value="c"> Shcool</label><br>
-
-    <p><b>5. Which instrument measures temperature?</b></p>
-    <label><input type="radio" name="q5" value="a"> Thermometer</label><br>
-    <label><input type="radio" name="q5" value="b"> Ammeter</label><br>
-    <label><input type="radio" name="q5" value="c"> Voltmeter</label><br><br>
-
-    <button type="submit" style="background:#4035e8;color:white;border:0;padding:12px 22px;border-radius:8px;cursor:pointer;">Submit Test</button>
-  </form>
-  <h3 id="test-result" aria-live="polite"></h3>
-</section>
-
-<script>
-document.getElementById('student-test').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const correct = {q1:'b',q2:'b',q3:'c',q4:'b',q5:'a'};
-  let score = 0;
-  let unanswered = 0;
-
-  for (const q in correct) {
-    const answer = this.querySelector('input[name="' + q + '"]:checked');
-    if (!answer) unanswered++;
-    else if (answer.value === correct[q]) score++;
-  }
-
-  const result = document.getElementById('test-result');
-  if (unanswered > 0) {
-    result.textContent = 'Please answer all 5 questions before submitting.';
-  } else {
-    result.textContent = 'Your Score: ' + score + ' / 5';
-  }
-});
-</script></body>
+</body>
 </html>
