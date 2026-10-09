@@ -228,5 +228,62 @@ document.getElementById("testForm").addEventListener("submit", function(event) {
     "Your score: " + score + " / 3";
 });
 </script>
-</body>
+
+<!-- BrightLearn Sample Student Test -->
+<section id="sample-test" style="max-width:750px;margin:40px auto;padding:24px;background:#f5f3ff;border-radius:16px;font-family:Arial,sans-serif;color:#171747;">
+  <h2>📝 BrightLearn Student Test</h2>
+  <p>General Knowledge | 5 Questions</p>
+
+  <form id="student-test">
+    <p><b>1. Which planet is known as the Red Planet?</b></p>
+    <label><input type="radio" name="q1" value="a"> Earth</label><br>
+    <label><input type="radio" name="q1" value="b"> Mars</label><br>
+    <label><input type="radio" name="q1" value="c"> Jupiter</label><br>
+
+    <p><b>2. What is 12 × 5?</b></p>
+    <label><input type="radio" name="q2" value="a"> 50</label><br>
+    <label><input type="radio" name="q2" value="b"> 60</label><br>
+    <label><input type="radio" name="q2" value="c"> 65</label><br>
+
+    <p><b>3. Which organ pumps blood?</b></p>
+    <label><input type="radio" name="q3" value="a"> Lungs</label><br>
+    <label><input type="radio" name="q3" value="b"> Brain</label><br>
+    <label><input type="radio" name="q3" value="c"> Heart</label><br>
+
+    <p><b>4. Choose the correct spelling.</b></p>
+    <label><input type="radio" name="q4" value="a"> Scool</label><br>
+    <label><input type="radio" name="q4" value="b"> School</label><br>
+    <label><input type="radio" name="q4" value="c"> Shcool</label><br>
+
+    <p><b>5. Which instrument measures temperature?</b></p>
+    <label><input type="radio" name="q5" value="a"> Thermometer</label><br>
+    <label><input type="radio" name="q5" value="b"> Ammeter</label><br>
+    <label><input type="radio" name="q5" value="c"> Voltmeter</label><br><br>
+
+    <button type="submit" style="background:#4035e8;color:white;border:0;padding:12px 22px;border-radius:8px;cursor:pointer;">Submit Test</button>
+  </form>
+  <h3 id="test-result" aria-live="polite"></h3>
+</section>
+
+<script>
+document.getElementById('student-test').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const correct = {q1:'b',q2:'b',q3:'c',q4:'b',q5:'a'};
+  let score = 0;
+  let unanswered = 0;
+
+  for (const q in correct) {
+    const answer = this.querySelector('input[name="' + q + '"]:checked');
+    if (!answer) unanswered++;
+    else if (answer.value === correct[q]) score++;
+  }
+
+  const result = document.getElementById('test-result');
+  if (unanswered > 0) {
+    result.textContent = 'Please answer all 5 questions before submitting.';
+  } else {
+    result.textContent = 'Your Score: ' + score + ' / 5';
+  }
+});
+</script></body>
 </html>
