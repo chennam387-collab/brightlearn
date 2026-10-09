@@ -182,5 +182,51 @@ function reveal(id){
   document.getElementById(id).hidden=false;
 }
 </script>
+<!-- BrightLearn Student Test -->
+
+<section id="brightlearn-test" style="max-width:700px;margin:30px auto;padding:24px;font-family:Arial,sans-serif;background:#f0f7ff;border-radius:16px;color:#183153;">
+  <h2>📝 BrightLearn Student Test</h2>
+  <p>Answer these 3 questions and check your score!</p>
+
+  <form id="testForm">
+    <p><strong>1. Which planet do we live on?</strong></p>
+    <label><input type="radio" name="q1" value="0" required> Mars</label><br>
+    <label><input type="radio" name="q1" value="1"> Earth</label><br>
+    <label><input type="radio" name="q1" value="0"> Jupiter</label>
+
+```
+<p><strong>2. What is 5 + 3?</strong></p>
+<label><input type="radio" name="q2" value="1" required> 8</label><br>
+<label><input type="radio" name="q2" value="0"> 7</label><br>
+<label><input type="radio" name="q2" value="0"> 9</label>
+
+<p><strong>3. Which part of a plant absorbs water?</strong></p>
+<label><input type="radio" name="q3" value="1" required> Roots</label><br>
+<label><input type="radio" name="q3" value="0"> Flowers</label><br>
+<label><input type="radio" name="q3" value="0"> Fruits</label><br><br>
+
+<button type="submit" style="background:#1769ff;color:white;border:0;padding:12px 24px;border-radius:8px;cursor:pointer;font-size:16px;">Submit Test</button>
+```
+
+  </form>
+
+  <div id="testResult" role="status" style="margin-top:20px;font-size:20px;font-weight:bold;"></div>
+</section>
+
+<script>
+document.getElementById("testForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+  const answers = ["q1", "q2", "q3"];
+  let score = 0;
+
+  answers.forEach(function(question) {
+    const selected = document.querySelector('input[name="' + question + '"]:checked');
+    if (selected) score += Number(selected.value);
+  });
+
+  document.getElementById("testResult").textContent =
+    "Your score: " + score + " / 3";
+});
+</script>
 </body>
 </html>
